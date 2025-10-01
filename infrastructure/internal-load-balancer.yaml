@@ -1,0 +1,128 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Pila del servidor para el internal load balancer
+
+Parameters:
+
+  InstanceType:
+    Description: Parametro para seleccionar el tipo de instancia EC2
+    Type: String
+    Default: t2.small
+    AllowedValues:
+      - t2.large
+      - t2.medium
+      - t2.small
+      - t2.micro
+      - t2.nano
+
+  InstanceImage:
+    Description: Parametro para seleccionar la AMI Ubuntu 22.04
+    Type: String
+    Default: "ami-0f9de6e2d2f067fca"
+  
+  InstanceKeyName:
+    Description: Parametro para seleccionar el KeyName de la Instancia
+    Type: String
+    Default: "vockey"
+  
+  HostedZoneName:
+    Type: String
+    Description: Nombre del dominio para la zona hospedada en Route 53
+    Default: "chefmate"
+
+Resources:
+
+  InternalLoadBalancerDNS:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId:
+        Fn::ImportValue: "HostedZone"
+          
+      RecordSets:
+        - Name: !Sub "ilb.${HostedZoneName}."
+          Type: A
+          TTL: '900'
+          ResourceRecords:
+            - !GetAtt InternalLoadBalancer.PrivateIp
+  
+  InternalLoadBalancerIP:
+    Type: AWS::EC2::EIP
+
+  InternalLoadBalancer:
+    Type: "AWS::EC2::Instance"
+    Description: Servidor del Internal Load Balancer
+    Properties:
+      Tags:
+        - Key: "Name"
+          Value: "ilb"
+      ImageId: !Ref InstanceImage
+      InstanceType: !Ref InstanceType 
+      KeyName: !Ref InstanceKeyName
+      SecurityGroupIds: 
+        - Fn::ImportValue:
+            !Sub "http-sg"
+        - Fn::ImportValue:
+            !Sub "https-sg"
+        - Fn::ImportValue:
+            !Sub "ssh-sg"
+      UserData: 
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          exec > /tmp/userdata.log 2>&1
+
+          #====================================================================#
+          #----------------------> PREPARAR SERVIDOR <-------------------------#
+          #====================================================================#
+
+          # Actualizar la lista de paquetes de la instancia
+          apt update 
+          apt upgrade -y
+
+          # Instalar git y curl
+          apt install -y git unzip curl
+
+          # Instalar Apache y habilitarlo
+          apt install apache2 -y
+
+          # Activar módulos necesarios
+          a2enmod ssl proxy proxy_http proxy_balancer lbmethod_byrequests 
+
+          # Reinicia Apache para aplicar los cambios en los módulos activados
+          systemctl restart apache2 
+
+          #===================================================================#
+          #---------------------> MONTAR BALANCEADOR <------------------------#
+          #===================================================================#
+
+          cat <<EOF > /etc/apache2/sites-available/000-default.conf
+          <VirtualHost *:80>
+              ServerName chefmate-internal.duckdns.org
+              
+              ProxyRequests Off
+              ProxyPreserveHost On
+
+              <Proxy "balancer://backendcluster">
+                BalancerMember http://be1.${HostedZoneName}
+                BalancerMember http://be2.${HostedZoneName}
+                ProxySet lbmethod=byrequests
+              </Proxy>    
+
+              ProxyPass / balancer://backendcluster/
+              ProxyPassReverse / balancer://backendcluster/
+          </VirtualHost>
+          EOF
+
+          # Reinicia Apache para aplicar los cambios 
+          systemctl restart apache2
+
+  InternalLoadBalancerAssociation:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      InstanceId: !Ref InternalLoadBalancer
+      EIP: !Ref InternalLoadBalancerIP
+
+Outputs:
+
+  InternalLoadBalancer:
+    Value: !GetAtt InternalLoadBalancer.PrivateIp
+    Export:
+      Name: ilb

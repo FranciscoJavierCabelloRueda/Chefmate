@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="cuenta-container">
+  <button class="btn-eliminar-cuenta" (click)="eliminarCuenta()" [disabled]="cuentaService.loading">
+    Eliminar cuenta
+  </button>
+  <h1 class="titulo-principal">MI CUENTA</h1>
+  <form class="cuenta-formulario" (ngSubmit)="onSubmit()">
+    <div class="foto-cambiar-container">
+      <img [src]="previewUrl || fotoUrl" alt="Foto de perfil" class="foto-perfil" *ngIf="previewUrl || fotoUrl">
+      <label class="btn-cambiar">
+        CAMBIAR
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+      </label>
+    </div>
+    <div class="form-group fila">
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" [(ngModel)]="datosCuenta.nombre" name="nombre" required>
+      </div>
+      <div class="campo">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos" [(ngModel)]="datosCuenta.apellidos" name="apellidos" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="datosCuenta.email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" [(ngModel)]="datosCuenta.password" name="password">
+    </div>
+    <div class="mensajes">
+      <div class="mensaje-exito" *ngIf="cuentaService.success">{{ cuentaService.success }}</div>
+      <div class="mensaje-error" *ngIf="cuentaService.error">{{ cuentaService.error }}</div>
+    </div>
+    <div class="botones-container">
+      <button type="submit" class="btn-guardar" [disabled]="cuentaService.loading">
+        GUARDAR
+      </button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer> 

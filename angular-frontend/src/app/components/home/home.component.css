@@ -1,0 +1,26 @@
+.page-container {
+  min-height: 90vh;
+  padding-top: 200px; 
+}
+
+.welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: center;
+  flex-direction: column;
+}
+
+.welcome-message {
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: var(--fuente-principal);
+  color: var(--color-primario);
+  margin-bottom: 2rem;
+}
+
+.logo-welcome {
+  max-width: 700px;
+  margin-bottom: 1rem;
+}

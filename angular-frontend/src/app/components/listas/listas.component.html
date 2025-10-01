@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="listas-container">
+  <h1 class="titulo-principal">MIS LISTAS</h1>
+  <form [formGroup]="listaForm" (ngSubmit)="crearLista()" class="formulario-lista">
+    <div class="input-grupo">
+      <input type="text" 
+             class="input-lista" 
+             formControlName="nombre_lista" 
+             placeholder="Nombre de la lista">
+      <button class="btn-crear" 
+              type="submit">
+        <span *ngIf="!cargando">CREAR LISTA</span>
+        <span *ngIf="cargando">CREANDO...</span>
+      </button>
+    </div>
+    <div class="mensajes">
+      <div class="mensaje-exito" *ngIf="success">
+        <i class="bi bi-check-circle"></i>
+        {{ success }}
+      </div>
+      <div class="mensaje-error" *ngIf="error">{{ error }}</div>
+    </div>
+  </form>
+  <div *ngIf="!cargando && listas.length === 0" class="mensaje-vacio">
+    <p>No tienes listas creadas</p>
+  </div>
+  <div class="grid-listas">
+    <div *ngFor="let lista of listas" class="tarjeta-lista">
+      <div class="tarjeta-contenido">
+        <h2 class="tarjeta-titulo">{{ lista.nombre_lista }}</h2>
+        <p class="tarjeta-contador">{{ lista.recetas?.length || 0 }} recetas</p>
+        
+        <div *ngIf="(lista.recetas || []).length === 0" class="mensaje-sin-recetas">
+          <p>No hay recetas en esta lista</p>
+        </div>
+        <div *ngIf="(lista.recetas || []).length > 0" class="lista-recetas">
+          <div *ngFor="let receta of (lista.recetas || []).slice(0, 3)" 
+               class="item-receta"
+               [routerLink]="['/receta', receta.idRec]">
+            <div class="receta-imagen">
+              <img [src]="receta.foto" 
+                   [alt]="receta.titulo">
+            </div>
+            <span class="receta-titulo">{{ receta.titulo }}</span>
+          </div>
+          <div *ngIf="(lista.recetas || []).length > 3" class="mas-recetas">
+            Y {{ (lista.recetas || []).length - 3 }} más...
+          </div>
+        </div>
+      </div>
+      <div class="tarjeta-acciones">
+        <button class="btn-eliminar" (click)="eliminarLista(lista.idLis)">
+          <i class="bi bi-trash"></i> ELIMINAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

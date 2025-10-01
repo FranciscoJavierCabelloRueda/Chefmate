@@ -1,0 +1,14 @@
+// Aplicamos reglas a todos los elementos del sitio
+* {
+  box-sizing: border-box;   // Incluye padding y borde dentro del ancho y alto del elemento
+  margin: 0;                // Quitamos los márgenes por defecto del navegador
+  padding: 0;               // Lo mismo con el relleno
+}
+
+// Estilos body
+body {
+  font-family: var(--fuente-terciaria);      
+  font-size: 1rem;                           // Tamaño de letra base 
+  line-height: 1.5;                          // Espacio entre líneas para mejor lectura
+  color: var(--color-primario);              
+}

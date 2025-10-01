@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Chefmate | Landing-Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gantari&family=Roboto:wght@400;700&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/chefmate.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="assets/js/anime.min.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- Fondo de pantalla con video y máscara -->
+    <div class="background">
+      <video class="background__video" autoplay loop muted>
+        <source src="assets/video/cocina.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de vídeo.
+      </video>
+      <div class="background__mascara"></div>
+    </div>
+    <!-- Audio ambiente en bucle y oculto -->
+    <audio id="audio" src="assets/audio/cuchillo.mp3" preload="auto"></audio>
+    <!-- Logo ChefMate SVG con animación-->
+    <div class="logo">
+      <svg id="logo__chefmate" viewBox="350 350 350 350" >
+        <g id="g107" style="fill:#a54308;fill-opacity:1" transform="matrix(0.64883626,0,0,0.60755126,189.80884,197.1883)">
+          <!-- Animación del tenedor -->
+          <animateTransform attributeName="transform" type="translate" additive="sum" values="0,0;0,-8;0,2;0,0" keyTimes="0;0.3;0.7;1" dur="1s" begin="4s" fill="freeze"  repeatCount="indefinite"/>
+          <rect id="rect105" width="31.441418" height="190.96037" x="409.66318" y="495.66467"/>
+          <rect id="rect105-9" width="19.057077" height="140.74646" x="373.95645" y="393.49295" ry="10.106513"/>
+          <rect id="rect105-9-8" width="20.213026" height="128.37794" x="413.77267" y="392.49936" ry="10.106513"/>
+          <rect id="rect105-9-8-2" width="19.981825" height="138.319" x="455.61813" y="392.53641" ry="10.106513"/>
+          <ellipse id="path106" cx="425.05176" cy="524.69482" rx="50.79248" ry="36.968323"/>
+        </g>
+        <g id="g110" style="fill:#a54308;fill-opacity:1" transform="matrix(0.64883626,0,0,0.57683622,189.80884,220.83039)">
+          <!-- Animación del cuchillo -->
+          <animateTransform attributeName="transform" type="translate" additive="sum" values="0,0;0,-8;0,3;0,0" keyTimes="0;0.2;0.7;1" dur="1s" begin="4s" fill="freeze"  repeatCount="indefinite"/>
+          <rect id="rect107" width="34.676308" height="96.064819" x="591.12128" y="591.12134" ry="0"/>
+          <rect id="rect108" width="23.121082" height="220.43089" x="602.79761" y="382.05661" ry="0"/>
+          <rect id="rect108-5" width="61.726902" height="19.882086" x="-599.31189" y="591.22491" transform="scale(-1,1)"/>
+          <path id="rect109" d="m 626.68212,358.75931 -0.74124,24.42179 c -0.16745,5.51692 -16.33495,25.45091 -21.53396,27.97235 -18.73574,9.08652 -53.99511,76.95478 -43.78727,182.42005 0.55666,5.7513 -6.76304,4.74074 -12.28251,4.74074 h -0.9369 c -5.51946,0 -9.5724,0.0412 -9.99387,-5.72158 -6.26688,-85.68761 11.76149,-160.48321 50.90559,-201.42186 3.99323,-4.1763 14.11011,-14.39018 18.54087,-17.68152 z"/>
+        </g>
+        <g id="g114" transform="matrix(0.64883626,0,0,0.62336295,189.80884,189.38379)">
+          <ellipse style="fill:none;fill-opacity:1;stroke:#a54308;stroke-width:20.2426;stroke-dasharray:none;stroke-opacity:1" id="path110" cx="510.63406" cy="714.13287" rx="166.74486" ry="42.387764" />
+          <rect style="fill:#a54308;fill-opacity:1;stroke:#a54308;stroke-width:14.8869;stroke-dasharray:none;stroke-opacity:1" id="rect112" width="7.2852979" height="170.10597" x="631.42047" y="582.96979" ry="8.2309351" transform="matrix(0.99838983,-0.05672521,0.05667991,0.9983924,0,0)"/>
+          <rect style="clip-rule:evenodd;fill:#a54308;fill-opacity:1;fill-rule:evenodd;stroke:#a54308;stroke-width:15.5379;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" id="rect112-1" width="5.0829911" height="169.87988" x="385.07385" y="524.16992" ry="8.3247509" transform="matrix(0.99845917,0.05549133,-0.06068278,0.9981571,0,0)" rx="0"/>
+          <path id="rect112-1-1" style="fill:#a54308;fill-opacity:1;stroke:#a54308;stroke-width:16.0372;stroke-opacity:1" d="m 490.06589,139.26263 c -4.95399,7.40539 -0.33767,6.05282 -18.97123,16.18491 -93.61503,50.90365 -82.87273,193.74519 19.35548,200.81737 5.82239,0.4028 -39.1399,-6.56041 -0.78109,2.03303 20.72658,4.64333 27.54857,-15.99822 -8.3731,-6.853 -12.03732,3.06455 -146.90461,-73.13562 -11.51406,-203.94612 4.9511,-4.78361 23.97596,-13.75505 20.284,-8.23619 z" sodipodi:nodetypes="sssssss" transform="matrix(0.91205682,0.41006383,-0.30035048,0.95382891,0,0)"/>
+          <path id="rect112-1-1-5" style="clip-rule:evenodd;fill:#a54308;fill-opacity:1;fill-rule:evenodd;stroke:#a54308;stroke-width:13.5018;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" d="m 628.059,334.99767 c -7.38442,-1.14821 -1.64827,6.66017 -6.77795,-7.81644 -22.47558,-63.42888 -165.63422,-74.69492 -217.81557,-0.749 -11.05616,15.66763 -82.33581,34.90312 -1.86918,-0.68943 19.05303,-8.42767 -7.63279,28.26377 7.57122,-0.5716 30.05726,-57.00552 188.35339,-67.70481 210.8681,7.27175 5.55034,18.48326 25.1281,5.21436 8.02338,2.55472 z" sodipodi:nodetypes="sssssss"/>
+          <path id="rect112-1-1-5-7" style="clip-rule:evenodd;fill:#a54308;fill-opacity:1;fill-rule:evenodd;stroke:#a54308;stroke-width:15.9818;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" d="m 664.80854,551.32254 c 4.02378,-7.38866 -1.37568,-7.83688 16.9379,-16.21723 99.13879,-45.3662 44.73219,-183.96869 -44.57537,-199.06362 -5.80095,-0.98049 40.9035,10.63953 0.52573,-2.02355 -13.29977,-4.17101 -42.77397,-5.93562 9.23346,6.72793 11.69671,2.84809 171.30791,92.92043 37.12717,202.23393 -5.01517,4.08573 -22.2476,13.84893 -19.24889,8.34254 z" sodipodi:nodetypes="sssssss"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Sección principal con título y descripción -->
+    <div class="layout">
+      <canvas class="layout__canvas" id="layout__canvas" width="800" height="700"></canvas>
+      <div class="layout__presentacion">
+        <img src="assets/img/nombre_chefmate.png" alt="Chefmate" id="layout__titulo" class="layout__titulo"/>
+        <h1 class="layout__subtitulo">¡Descubre y guarda tus recetas favoritas! </h1>
+        <p class="layout__descripcion">Encuentra recetas deliciosos, fáciles y saludables creadas por expertos y amantes de la cocina como tú.</p>
+        <button class="layout__boton" onclick="location.href='http://chefmate.duckdns.org'">Iniciar Sesión</button>
+      </div>
+    </div>
+    <!-- Footer con enlaces y redes sociales -->
+    <footer class="footer">
+      <div class="footer__top">
+        <nav class="footer__links">
+          <a href="#">Política de Cookies</a>
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Preguntas Frecuentes</a>
+          <a href="#">Contacto</a>
+        </nav>
+        <div class="footer__social">
+          <a href="#"><img src="assets/icons/youtube.png" alt="YouTube" /></a>
+          <a href="#"><img src="assets/icons/facebook.png" alt="Facebook" /></a>
+          <a href="#"><img src="assets/icons/x.png" alt="X" /></a>
+          <a href="#"><img src="assets/icons/instagram.png" alt="Instagram" /></a>
+        </div>
+      </div>
+      <div class="footer__copyright">ChefMate © 2025 Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+/* Estilos para las vistas de crear y editar receta */
+.rc-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fffdf8;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.rc-margin-top {
+  margin-top: 4rem;
+}
+
+.rc-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: "Rosarivo", serif;
+  color: rgb(165, 63, 0);
+  margin-bottom: 2rem;
+}
+
+.rc-alert {
+  background-color: #fff0e4;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #c40000;
+  border-radius: 6px;
+}
+
+.rc-error-item {
+  color: var(--color-primario);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.rc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.rc-label {
+  font-weight: bold;
+  color: rgb(165, 63, 0);
+}
+
+.rc-input,
+.rc-textarea {
+  padding: 0.8rem;
+  border: 1px solid #d0b49f;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.rc-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.rc-hint {
+  font-weight: normal;
+  font-size: 0.85rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.rc-button {
+  background-color: #ff731c;
+  color: white;
+  font-family: "Gantari", sans-serif;
+  font-weight: bold;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rc-button:hover {
+  background-color: rgb(175, 81, 22);
+}

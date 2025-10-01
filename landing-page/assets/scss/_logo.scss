@@ -1,0 +1,15 @@
+// Contenedor del logo 
+.logo {
+  position: absolute;         // Lo sacamos del flujo normal para poder moverlo libremente
+  top: 1rem;                  // Lo separamos un poco del borde superior 
+  left: 1rem;                 // Igual pero desde la izquierda
+  width: 80px;                // Ancho fijo para que siempre tenga el mismo tamaño
+  height: 80px;               // Alto igual al ancho 
+  z-index: 2;
+}
+
+// El SVG del logo 
+.logo__chefmate {
+  width: 100%;                // El SVG se adapta al ancho del contenedor
+  height: 100%;               // El SVG se adapta al alto del contenedor
+}

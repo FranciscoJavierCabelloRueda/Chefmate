@@ -1,0 +1,44 @@
+// A partir de 600px, ajustamos el layout
+@media (min-width: 600px) {
+  .layout {
+    flex-direction: row;               // En lugar de columna, los elementos van en fila
+    justify-content: space-between;   // Se separan dejando espacio entre ellos
+    align-items: center;              // Se alinean verticalmente al centro
+  }
+}
+
+// A partir de 768px, ajustamos el footer
+@media (min-width: 768px) {
+  .footer {
+    display: flex;                   // Usamos Flexbox para ordenar el contenido
+    justify-content: space-between;  // Espaciamos los elementos (redes y enlaces)
+    align-items: center;             // Centramos verticalmente
+  }
+
+  .footer__links {
+   margin-left: 18rem;               // Desplazamos hacia la derecha 
+  }
+  
+}
+
+// A partir de 1100px, ajustamos el footer__social
+@media (max-width: 1100px) {  
+  .footer__social {
+    padding: 20px;           // Añadimos un poco de espacio alrededor
+    justify-content: center; // Centramos los iconos
+    width: 100%;             // Ocupa todo el ancho
+  }
+
+  .footer__links {
+    justify-content: center; // Centramos los iconos
+    width: 100%;             // Ocupa todo el ancho
+  }
+}
+
+// A partir de 1024px, ajustamos el layout
+@media (min-width: 1024px) {
+  .layout__presentacion {
+    align-items: flex-start;         // Alineamos los elementos a la izquierda
+    text-align: left;                // También alineamos el texto a la izquierda
+  }
+}

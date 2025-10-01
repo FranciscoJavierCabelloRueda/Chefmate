@@ -1,0 +1,13 @@
+services:
+  angular16:
+    image: node:18
+    container_name: angular-frontend
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "4200:4200"
+    tty: true
+    stdin_open: true
+    entrypoint: >
+      sh -c "npm install -g @angular/cli@16 && exec sh"

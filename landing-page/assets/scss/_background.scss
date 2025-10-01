@@ -1,0 +1,23 @@
+// Fondo fijo que ocupa toda la pantalla
+.background {
+  position: fixed;       // Lo dejamos fijo para que no se mueva al hacer scroll
+  inset: 0;              // Se extiende por toda la pantalla (arriba, abajo, izquierda y derecha)
+  overflow: hidden;      // Si algo se sale, se esconde
+  z-index: -1;           // Lo mandamos al fondo, detrás del resto del contenido
+}
+
+// Vídeo que va de fondo y ocupa más del 100% para evitar bordes
+.background__video {
+  width: 110%;           
+  height: 110%;
+  object-fit: cover;                    // Hace que el vídeo se ajuste bien al contenedor sin deformarse
+  transition: transform 0.1s ease-out;  // Para que los movimientos sean suaves
+}
+
+// Capa blanca semitransparente por encima del vídeo
+.background__mascara {
+  position: absolute;                     // Se coloca encima del vídeo
+  inset: 0;                               // También ocupa todo el espacio
+  background-color: var(--color-mascara); 
+  pointer-events: none;                   // Esta capa no bloquea clics ni interacciones
+}

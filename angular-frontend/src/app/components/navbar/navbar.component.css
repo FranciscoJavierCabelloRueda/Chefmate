@@ -1,0 +1,81 @@
+.navbar {
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  border-bottom: 1px solid #d0732d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img.icon {
+  height: 50px;
+  width: 50px;
+  margin-right: 0.5rem;
+}
+
+.logo img.name {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-links a, .nav-links button.logout {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: var(--color-primario);
+  text-decoration: none;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.nav-links a:hover, .nav-links button.logout:hover {
+  background-color: #ffe9e0;
+}
+
+.nav-links button.logout {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: var(--color-primario);
+  cursor: pointer;
+  text-decoration: none;
+  height: 100%;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.nav-links button.logout:hover {
+  background-color: #ffe9e0;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+  margin-right: 0.5rem;
+}
+
+

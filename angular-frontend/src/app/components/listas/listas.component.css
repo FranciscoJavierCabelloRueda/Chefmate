@@ -1,0 +1,229 @@
+.listas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 90vh;
+  margin-bottom: 2rem;
+}
+
+.titulo-principal {
+  color: var(--color-primario);
+  font-size: 60px;
+  font-family: var(--fuente-principal);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.formulario-lista {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.input-grupo {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-lista {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid var(--color-secundario);
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: var(--fuente-terciaria);
+}
+
+.btn-crear {
+  background-color: var(--color-secundario);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-crear:hover {
+  background-color: var(--color-hover);
+}
+
+.btn-crear:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.mensaje-exito {
+  background-color: #eeffe3;
+  color: #000000;
+  border: 1px solid #b7ddb4;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mensaje-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.mensajes {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.cargando {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.mensaje-vacio {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+}
+
+.grid-listas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.tarjeta-lista {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-contenido {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.tarjeta-titulo {
+  color: var(--color-primario);
+  font-family: var(--fuente-secundaria);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tarjeta-contador {
+  color: #000000;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.mensaje-sin-recetas {
+  color: #000000;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.lista-recetas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-receta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.item-receta:hover {
+  background-color: #f5f5f5;
+}
+
+.receta-imagen {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.receta-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.receta-titulo {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.mas-recetas {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  padding: 0.5rem;
+}
+
+.tarjeta-acciones {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+  background-color: #f9f9f9;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.btn-eliminar:hover {
+  background-color: #bb2d3b;
+}
+
+@media (max-width: 768px) {
+  .titulo-principal {
+    font-size: 40px;
+  }
+
+  .grid-listas {
+    grid-template-columns: 1fr;
+  }
+
+  .input-grupo {
+    flex-direction: column;
+  }
+
+  .btn-crear {
+    width: 100%;
+  }
+}

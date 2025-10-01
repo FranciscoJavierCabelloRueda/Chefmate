@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Pila para montar la zona hospedada en Route 53
+
+Parameters:
+
+  HostedZoneName:
+    Type: String
+    Description: Nombre del dominio para la zona hospedada en Route 53
+    Default: "chefmate"
+
+  DefaultVPC:
+    Type: String
+    Description: VPC en la que se creara la instancia
+    Default: "vpc-0f6787902d2322575"
+
+Resources:
+
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref HostedZoneName
+      VPCs:
+        - VPCId: !Ref DefaultVPC
+          VPCRegion: !Ref AWS::Region
+
+Outputs:
+
+  HostedZone:
+    Value: !Ref HostedZone
+    Export:
+      Name: HostedZone

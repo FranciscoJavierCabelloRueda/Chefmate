@@ -1,0 +1,73 @@
+// Sección principal del contenido
+.layout {
+  display: flex;                        // Usamos Flexbox para ordenar elementos
+  flex-direction: column;               // Uno debajo del otro (vertical)
+  align-items: center;                  // Centramos horizontalmente 
+  padding: 1rem;                        // Espaciado 
+  max-width: 1200px;                    // Ancho 
+  margin: 0 auto;                       // Lo centramos horizontalmente en la página
+  gap: 4rem;                            // Separación entre elementos internos
+  min-height: 100vh;                    // Altura visible del navegador
+  font-size: 2rem;       
+}
+
+// Canvas que muestra las imágenes
+.layout__canvas {
+  width: 100%;
+  max-width: 650px;                    
+}
+
+// Contenedor del título, subtítulo, texto y botón
+.layout__presentacion {
+  display: flex;                       // Flexbox para ordenar
+  flex-direction: column;              // En columna 
+  align-items: center;                 // Centrados horizontalmente
+  text-align: center;                  // También el texto dentro
+  gap: 1rem;                           // Separación entre elementos
+}
+
+// Imagen del título 
+.layout__titulo {
+  width: 90%;                          // Ocupa el 90% del contenedor
+  max-width: 600px;                    // Pero sin pasarse de este ancho
+  opacity: 0;                          // Oculto al principio 
+  margin-bottom: 1rem;                 // Separación inferior
+  cursor: pointer;                     // Cambia el cursor al pasar el ratón
+}
+
+// Título principal del mensaje de bienvenida
+.layout__subtitulo {
+  font-size: 2.7rem;     
+  font-family: var(--fuente-principal); // Fuente específica para el título        
+  font-weight: bold;                    // Negrita
+  color: var(--color-primario);         
+  line-height: 1.2;                     // Un poco de espacio entre líneas
+}
+
+// Texto descriptivo 
+.layout__descripcion {
+  font-size: 1.1rem;           
+  font-family: var(--fuente-secundaria);       
+  color: var(--color-primario);         
+  max-width: 600px;                    
+  line-height: 1.6;                     // Más espacio entre líneas 
+  margin: 0 auto;                       // Centramos el párrafo horizontalmente
+}
+
+// Botón para iniciar sesión
+.layout__boton {
+  padding: 0.75rem 1.5rem;                   // Relleno interno 
+  background-color: var(--color-secundario); 
+  font-family: var(--fuente-secundaria);        
+  color: var(--color-blanco);                            
+  border: none;                              // Sin borde por defecto
+  border-radius: 8px;                        // Bordes redondeados
+  font-size: 1rem;                           
+  cursor: pointer;                           // Mano al pasar el ratón
+  transition: background 0.3s ease;          // Transición suave 
+}
+
+// Al pasar el ratón por encima del botón cambia el color de fondo
+.layout__boton:hover {
+  background-color: var(--color-hover);         
+}

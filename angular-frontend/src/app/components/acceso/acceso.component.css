@@ -1,0 +1,90 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: white;
+}
+
+.login-left {
+  background: #fff;
+}
+
+.logo {
+  margin-left: 100px;
+}
+
+.logo img {
+  justify-content: left;
+  text-align: left;
+  height: 60px;
+}
+
+.dish-image {
+  margin-left: 50px;
+  text-align: center;
+  max-width: 75%;
+  height: auto;
+}
+
+.login-right {
+  padding: 40px;
+  flex: 1;
+}
+
+.login-title {
+  color: #9C3A14;
+  font-size: 60px;
+  font-family: var(--fuente-principal);
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #ff4242;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  color: black;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 670px;
+  height: 40px;
+  padding: 10px;
+  border: 2px solid #D16B2E;
+}
+
+.login-button {
+  background-color: #F47C3C;
+  color: white;
+  padding: 10px 0;
+  width: 670px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #d96327;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.register-link {
+  color: black;
+  margin-top: 15px;
+  margin-right: 70px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #0056b3;
+  text-decoration: none;
+} 

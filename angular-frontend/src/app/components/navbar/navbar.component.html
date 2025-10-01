@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/img/chefmate.png" class="icon">
+    <img src="assets/img/nombre_chefmate.png" class="name">
+  </div>
+  <div class="nav-links">
+    <a routerLink="/home" routerLinkActive="active">
+      <img class="icon" src="assets/icons/home.png" alt="">
+      <span>Home</span>
+    </a>
+    <a routerLink="/recetas" routerLinkActive="active">
+      <img class="icon" src="assets/icons/libro.png" alt="">
+      <span>Recetas</span>
+    </a>
+    <a routerLink="/listas" routerLinkActive="active">
+      <img class="icon" src="assets/icons/lista.png" alt="">
+      <span>Mis Listas</span>
+    </a>
+    <a routerLink="/cuenta" routerLinkActive="active">
+      <img class="icon" src="assets/icons/persona.png" alt="">
+      <span>Mi Cuenta</span>
+    </a>
+    <button class="logout" (click)="onLogout()">
+      <img class="icon" src="assets/icons/logout.png" alt="">
+      <span>Cerrar Sesión</span>
+    </button>
+  </div>
+</nav> 

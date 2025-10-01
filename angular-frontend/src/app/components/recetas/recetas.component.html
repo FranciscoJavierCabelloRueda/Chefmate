@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h1>RECETAS</h1>
+  <div *ngIf="recetasService.error" class="alert alert-danger" role="alert">
+    {{ recetasService.error }}
+  </div>
+  <div class="recipes-grid">
+    <div *ngFor="let receta of getColumnRecipes(0)" class="recipe-card" [routerLink]="['/receta', receta.idRec]">
+      <div class="card-img-wrapper">
+        <img [src]="receta.foto" 
+             [alt]="receta.titulo"
+             class="card-img-top">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ receta.titulo }}</h5>
+        <p class="text-muted" *ngIf="receta.usuario">
+          Por {{ receta.usuario.nombre }} {{ receta.usuario.apellidos }}
+        </p>
+        <p class="card-text description">{{ receta.descripcion }}</p>
+      </div>
+    </div>
+    <div *ngFor="let receta of getColumnRecipes(1)" class="recipe-card" [routerLink]="['/receta', receta.idRec]">
+      <div class="card-img-wrapper">
+        <img [src]="receta.foto" 
+             [alt]="receta.titulo"
+             class="card-img-top">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ receta.titulo }}</h5>
+        <p class="text-muted" *ngIf="receta.usuario">
+          Por {{ receta.usuario.nombre }} {{ receta.usuario.apellidos }}
+        </p>
+        <p class="card-text description">{{ receta.descripcion }}</p>
+      </div>
+    </div>
+    <div *ngFor="let receta of getColumnRecipes(2)" class="recipe-card" [routerLink]="['/receta', receta.idRec]">
+      <div class="card-img-wrapper">
+        <img [src]="receta.foto" 
+             [alt]="receta.titulo"
+             class="card-img-top">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ receta.titulo }}</h5>
+        <p class="text-muted" *ngIf="receta.usuario">
+          Por {{ receta.usuario.nombre }} {{ receta.usuario.apellidos }}
+        </p>
+        <p class="card-text description">{{ receta.descripcion }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!recetasService.error && recetasService.recetas.length === 0" class="alert alert-info" role="alert">
+    No hay recetas disponibles en este momento.
+  </div>
+</div> 

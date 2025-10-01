@@ -1,0 +1,742 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API ChefMate",
+        "description": "API para gestión de usuarios, recetas, listas y comentarios de ChefMate.",
+        "contact": {
+            "name": "Francisco Javier Cabello Rueda"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Servidor local de desarrollo"
+        },
+        {
+            "url": "http://chefmate-internal.duckdns.org/api",
+            "description": "Servidor de producción"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Iniciar sesión",
+                "operationId": "67d6d0fdd54fba132e1b6f55ca254183",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "manuel@chefmate.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login exitoso"
+                    },
+                    "401": {
+                        "description": "Credenciales inválidas"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Cerrar sesión",
+                "operationId": "28d48c13fca984400ac8de99f54ee13a",
+                "responses": {
+                    "200": {
+                        "description": "Sesión cerrada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sesión cerrada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/comentarios/receta/{id}": {
+            "get": {
+                "tags": [
+                    "Comentarios"
+                ],
+                "summary": "Listar comentarios de una receta",
+                "operationId": "370a962e85a18d33d148674a419f3abf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la receta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comentarios obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontraron comentarios"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/comentarios": {
+            "post": {
+                "tags": [
+                    "Comentarios"
+                ],
+                "summary": "Crear un nuevo comentario",
+                "operationId": "7afd195d78a0f8fb4d527b7ccf58038d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comentario",
+                                    "valoracion",
+                                    "idRec"
+                                ],
+                                "properties": {
+                                    "comentario": {
+                                        "type": "string",
+                                        "example": "Muy buena receta"
+                                    },
+                                    "valoracion": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "idRec": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Comentario creado correctamente"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "422": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/comentarios/{id}": {
+            "put": {
+                "tags": [
+                    "Comentarios"
+                ],
+                "summary": "Actualizar un comentario propio",
+                "operationId": "989f8720227444ae575d4e45065fb4da",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del comentario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "comentario": {
+                                        "type": "string",
+                                        "example": "Comentario editado"
+                                    },
+                                    "valoracion": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Comentario actualizado correctamente"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado para modificar este comentario"
+                    },
+                    "404": {
+                        "description": "Comentario no encontrado"
+                    },
+                    "422": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Comentarios"
+                ],
+                "summary": "Eliminar un comentario propio",
+                "operationId": "6ec2f7002b1dc182c21fcc64d364a206",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del comentario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comentario eliminado correctamente"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado para eliminar este comentario"
+                    },
+                    "404": {
+                        "description": "Comentario no encontrado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/listas": {
+            "get": {
+                "tags": [
+                    "Listas"
+                ],
+                "summary": "Listar listas del usuario autenticado",
+                "operationId": "71f6ad3cb23f11888678cb333c9950b7",
+                "responses": {
+                    "200": {
+                        "description": "Listas obtenidas correctamente"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Listas"
+                ],
+                "summary": "Crear una nueva lista",
+                "operationId": "9f3529d9b2d5eee6e1bcf8715c9f57d5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre_lista"
+                                ],
+                                "properties": {
+                                    "nombre_lista": {
+                                        "type": "string",
+                                        "example": "Recetas favoritas"
+                                    },
+                                    "recetas": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Lista creada correctamente"
+                    },
+                    "422": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/listas/{id}": {
+            "put": {
+                "tags": [
+                    "Listas"
+                ],
+                "summary": "Actualizar una lista",
+                "operationId": "3eaaea5472d0b483ba1894fb44e9a9dd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la lista",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_lista": {
+                                        "type": "string",
+                                        "example": "Actualizado"
+                                    },
+                                    "recetas": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2,
+                                            3
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Lista actualizada correctamente"
+                    },
+                    "404": {
+                        "description": "Lista no encontrada"
+                    },
+                    "422": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Listas"
+                ],
+                "summary": "Eliminar una lista",
+                "operationId": "161c125eea6d7ec9fa79833b73b44e50",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la lista",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "Lista no encontrada"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/recetas": {
+            "get": {
+                "tags": [
+                    "Recetas"
+                ],
+                "summary": "Listar todas las recetas con su autor",
+                "operationId": "c255512219e7a394296629ad4d5fced2",
+                "responses": {
+                    "200": {
+                        "description": "Recetas obtenidas correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontraron recetas"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/recetas/{id}": {
+            "get": {
+                "tags": [
+                    "Recetas"
+                ],
+                "summary": "Obtener una receta específica con sus detalles",
+                "operationId": "ba970950c4980e1e16985216873967e4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la receta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Receta obtenida correctamente"
+                    },
+                    "404": {
+                        "description": "Receta no encontrada"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/usuarios": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Registrar un nuevo usuario",
+                "operationId": "09dec89b10edba6408b0a395a96aadeb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "apellidos",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Laura"
+                                    },
+                                    "apellidos": {
+                                        "type": "string",
+                                        "example": "Martínez Ruiz"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "laura@chefmate.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "secreto123"
+                                    },
+                                    "foto": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario registrado correctamente"
+                    },
+                    "422": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/usuario": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtener los datos del usuario autenticado",
+                "operationId": "002c1a91784d76ec38db18f429e08623",
+                "responses": {
+                    "200": {
+                        "description": "Datos del usuario obtenidos correctamente"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Actualizar el perfil del usuario autenticado",
+                "operationId": "2c7d747af08938cc4d90dbf49fbcdd49",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Juan"
+                                    },
+                                    "apellidos": {
+                                        "type": "string",
+                                        "example": "Pérez García"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "nuevoPassword123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Perfil actualizado correctamente"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Eliminar la cuenta del usuario autenticado",
+                "operationId": "973602edc27fa66105f64e1085f61285",
+                "responses": {
+                    "200": {
+                        "description": "Cuenta eliminada correctamente"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/usuario/foto": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Mostrar la foto del usuario autenticado",
+                "operationId": "134691773dd536b251bb387a8e48208d",
+                "responses": {
+                    "200": {
+                        "description": "Foto mostrada correctamente"
+                    },
+                    "404": {
+                        "description": "Foto no disponible"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "description": "Token de acceso obtenido en /login",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Autenticación",
+            "description": "Endpoints relacionados con login y logout"
+        },
+        {
+            "name": "Comentarios",
+            "description": "Endpoints relacionados con comentarios en recetas"
+        },
+        {
+            "name": "Listas",
+            "description": "Endpoints relacionados con listas de recetas"
+        },
+        {
+            "name": "Recetas",
+            "description": "Endpoints relacionados con recetas"
+        },
+        {
+            "name": "Usuarios",
+            "description": "Endpoints relacionados con usuarios"
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+// Contenedor principal del pie de página
+.footer {
+  background-color: var(--color-footer);  
+  color: var(--color-blanco);           
+  padding: 2rem 1rem;                        // Espaciado interior arriba/abajo y a los lados
+  display: flex;                             // Usamos Flexbox para organizar su contenido
+  flex-direction: column;                    // Los elementos dentro van en columna
+  align-items: center;                       // Centramos horizontalmente los elementos
+  gap: 1rem;                                 // Espacio entre bloques (como el top y el copyright)
+}
+
+// Parte superior del footer que contiene los enlaces y redes
+.footer__top {
+  display: flex;                             // Flexbox para poner enlaces y redes en una fila
+  justify-content: space-between;            // Se separan hacia los lados
+  align-items: center;                       // Centrado vertical
+  flex-wrap: wrap;                           // Si no caben, se pasan abajo
+  width: 100%;                               // Ocupa todo el ancho
+  max-width: 1200px;                         // Máximo ancho controlado
+}
+
+// Lista de enlaces importantes
+.footer__links {
+  display: flex;                             // Flexbox para que los enlaces estén en línea
+  flex-wrap: wrap;                           // Si no caben, saltan a otra línea
+  gap: 2rem;                                 // Separación entre enlaces
+  justify-content: center;                   // Los centramos
+}
+
+// Estilos individuales para cada enlace del footer
+.footer__links a {
+  color: var(--color-blanco);           
+  text-decoration: none;                      // Quitamos subrayado
+  font-size: 0.95rem;                         
+  transition: transform 0.3s;                 // Transición para el efecto de zoom
+}
+
+// Efecto cuando pasas el ratón por encima de los enlaces
+.footer__links a:hover {                   
+  transform: scale(1.1);                     // Se agranda un poco el enlace
+}
+
+// Contenedor de los iconos de redes sociales
+.footer__social {
+  display: flex;                             // Flexbox para ponerlos en línea
+  gap: 1rem;                                 // Espacio entre los iconos
+  align-items: center;                       // Centrados verticalmente
+}
+
+// Iconos de redes sociales
+.footer__social img {
+  width: 20px;                               
+  height: 20px;
+  transition: transform 0.3s;                // Animación suave al pasar el ratón
+}
+
+// Efecto de zoom al pasar por encima del icono
+.footer__social img:hover {
+  transform: scale(1.1);                     // Se hace un poco más grande
+}
+
+// Texto de copyright que aparece al final del footer
+.footer__copyright {
+  font-size: 0.75rem;                        
+  opacity: 0.8;                              // Un poco más transparente para que no resalte tanto
+  margin-top: 1rem;                          // Separación superior
+}

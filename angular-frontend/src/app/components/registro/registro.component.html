@@ -1,0 +1,47 @@
+<div class="register-page">
+    <div class="register-left">
+      <div class="logo">
+        <img src="assets/img/chefmate.png">
+        <img src="assets/img/nombre_chefmate.png">
+      </div>
+      <img src="assets/img/pollo.png" class="dish-image">
+    </div>
+    <div class="register-right">
+      <h2 class="register-title">REGISTRARSE</h2>
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="datosRegistro.nombre" required #nombreInput="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" name="apellidos" [(ngModel)]="datosRegistro.apellidos" required #apellidosInput="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" [(ngModel)]="datosRegistro.email" email required #emailInput="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña (8 min.)</label>
+          <input type="password" id="password" name="password" [(ngModel)]="datosRegistro.password" required minlength="8" #passwordInput="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="password_confirmation">Confirmar contraseña</label>
+          <input type="password" id="password_confirmation" name="password_confirmation" [(ngModel)]="datosRegistro.password_confirmation" required #passwordConfirmInput="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="foto">Foto de perfil (opcional)</label>
+          <input type="file" id="foto" name="foto" accept="image/*" (change)="onFileSelected($event)">
+        </div>
+        <div class="error-message" *ngIf="error">{{ error }}</div>
+        <button class="register-button" type="submit" [disabled]="loading || !registerForm.valid">
+          <span *ngIf="!loading">REGISTRARSE</span>
+          <span *ngIf="loading">REGISTRANDO...</span>
+        </button>
+      </form>
+      <div class="login-link">
+        ¿Ya tienes una cuenta? <a routerLink="/acceso">Acceder</a>
+      </div>
+    </div>
+</div>
+<app-footer></app-footer> 

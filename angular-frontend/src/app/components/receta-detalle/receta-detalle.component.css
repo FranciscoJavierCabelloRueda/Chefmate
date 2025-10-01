@@ -1,0 +1,248 @@
+.receta-detalle-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 90vh;
+}
+
+.cargando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mensaje-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.receta-detalle {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.receta-cabecera {
+  margin-bottom: 2rem;
+}
+
+.receta-imagen-contenedor {
+  position: relative;
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.receta-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.receta-imagen-contenedor:hover .receta-imagen {
+  transform: scale(1.05);
+}
+
+.receta-titulo-contenedor {
+  text-align: center;
+}
+
+.titulo-principal {
+  color: var(--color-primario);
+  font-size: 60px;
+  font-family: var(--fuente-principal);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.receta-autor {
+  font-size: 1.1rem;
+  color: #666;
+  font-family: var(--fuente-secundaria);
+  margin-bottom: 0;
+}
+
+.receta-seccion {
+  margin-bottom: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-seccion {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primario);
+  font-family: var(--fuente-secundaria);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+.receta-descripcion {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  font-family: var(--fuente-terciaria);
+}
+
+.receta-contenido {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.lista-ingredientes {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.lista-ingredientes li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #333;
+  font-family: var(--fuente-terciaria);
+}
+
+.lista-ingredientes li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-secundario);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.lista-pasos {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.lista-pasos li {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+  font-family: var(--fuente-terciaria);
+  line-height: 1.6;
+  padding-left: 0.5rem;
+}
+
+.contenedor-boton {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.btn-volver {
+  background-color: var(--color-secundario);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--fuente-secundaria);
+}
+
+.btn-volver:hover {
+  background-color: var(--color-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.seccion-comentarios {
+  margin-top: 3rem;
+}
+
+.btn-toggle-comentarios {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--fuente-secundaria);
+  font-size: 1.1rem;
+  color: var(--color-primario);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-toggle-comentarios:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn-toggle-comentarios i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.comentarios-contenedor {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.comentarios-contenedor.expandido {
+  max-height: 2000px; /* Altura máxima suficiente para el contenido */
+}
+
+@media (max-width: 991.98px) {
+  .titulo-principal {
+    font-size: 40px;
+  }
+
+  .receta-imagen-contenedor {
+    height: 350px;
+  }
+
+  .receta-contenido {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .receta-detalle-container {
+    padding: 1rem;
+  }
+
+  .receta-imagen-contenedor {
+    height: 300px;
+  }
+
+  .titulo-principal {
+    font-size: 32px;
+  }
+
+  .titulo-seccion {
+    font-size: 1.25rem;
+  }
+
+  .receta-descripcion {
+    font-size: 1rem;
+  }
+} 

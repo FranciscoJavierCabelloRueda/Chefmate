@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Pila que crea los grupos de seguridad para los servidores
+
+Resources:
+
+  SshSg:
+    Description: Grupo de Seguridad que permite el trafico en el puerto 22
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: ssh-sg
+      GroupDescription: Grupo de Seguridad que permite el trafico en el puerto 22
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 22
+          ToPort: 22
+          IpProtocol: TCP
+
+  DatabaseSg:
+    Description: Grupo de Seguridad que permite el trafico en el puerto 3306
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: db-sg
+      GroupDescription: Grupo de Seguridad que permite el trafico en el puerto 3306
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 3306
+          ToPort: 3306
+          IpProtocol: TCP
+
+  HttpSg:
+    Description: Grupo de Seguridad que permite el trafico en el puerto 80
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: http-sg
+      GroupDescription: Grupo de Seguridad que permite el trafico en el puerto 80
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 80
+          ToPort: 80
+          IpProtocol: TCP
+
+  HttpsSg:
+    Description: Grupo de Seguridad que permite el trafico en el puerto 443
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: https-sg
+      GroupDescription: Grupo de Seguridad que permite el trafico en el puerto 443
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 443
+          ToPort: 443
+          IpProtocol: TCP
+
+Outputs:
+  
+  SshSg:
+    Value: !Ref SshSg
+    Export:
+      Name: ssh-sg
+    
+  DatabaseSg:
+    Value: !Ref DatabaseSg
+    Export:
+      Name: db-sg
+
+  HttpSg:
+    Value: !Ref HttpSg
+    Export:
+      Name: http-sg
+
+  HttpsSg:
+    Value: !Ref HttpsSg
+    Export:
+      Name: https-sg

@@ -1,0 +1,96 @@
+<div class="seccion-comentarios">
+  <div *ngIf="comentarioService.loading" class="cargando">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p>Cargando comentarios...</p>
+  </div>
+  <div *ngIf="comentarioService.error" class="mensaje-error">
+    {{ comentarioService.error }}
+  </div>
+  <div class="formulario-contenedor" *ngIf="!comentarioService.loading">
+    <h4 class="titulo-seccion">{{ comentarioService.comentarioEditando ? 'Editar comentario' : 'Añadir comentario' }}</h4>
+    <form [formGroup]="comentarioForm" (ngSubmit)="enviarComentario()">
+      <div class="input-grupo">
+        <label for="comentario" class="input-etiqueta">Tu comentario</label>
+        <textarea
+          id="comentario"
+          class="input-texto"
+          formControlName="comentario"
+          rows="3"
+          placeholder="Escribe tu comentario aquí..."
+          [maxlength]="1000"
+        ></textarea>
+        <div class="input-ayuda">
+          Caracteres restantes: {{ 1000 - (comentarioForm.get('comentario')?.value?.length || 0) }}
+        </div>
+        <div *ngIf="comentarioForm.get('comentario')?.invalid && comentarioForm.get('comentario')?.touched" class="mensaje-error">
+          <div *ngIf="comentarioForm.get('comentario')?.errors?.['required']">
+            El comentario es requerido
+          </div>
+          <div *ngIf="comentarioForm.get('comentario')?.errors?.['maxlength']">
+            El comentario no puede exceder los 1000 caracteres
+          </div>
+        </div>
+      </div>
+      <div class="input-grupo">
+        <label class="input-etiqueta">Valoración</label>
+        <div class="valoracion-contenedor">
+          <div class="valoracion-estrellas">
+            <span
+              *ngFor="let star of [1,2,3,4,5]"
+              (click)="comentarioForm.get('valoracion')?.setValue(star)"
+              [style.cursor]="'pointer'"
+              [title]="star + ' estrellas'">
+              {{ star <= comentarioForm.get('valoracion')?.value ? '⭐' : '☆' }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="botones-grupo">
+        <button type="submit" class="btn-principal" [disabled]="!comentarioForm.valid || comentarioService.loading">
+          {{ comentarioService.comentarioEditando ? 'Actualizar' : 'Publicar' }}
+        </button>
+        <button *ngIf="comentarioService.comentarioEditando" type="button" class="btn-secundario" (click)="cancelarEdicion()" [disabled]="comentarioService.loading">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="lista-contenedor" *ngIf="!comentarioService.loading">
+    <h4 class="titulo-seccion">Comentarios ({{ comentarioService.comentarios.length }})</h4>
+    <div *ngIf="comentarioService.comentarios.length === 0" class="mensaje-vacio">
+      No hay comentarios aún. ¡Sé el primero en comentar!
+    </div>
+    <div *ngFor="let comentario of comentarioService.comentarios" class="tarjeta-comentario" [class.tarjeta-propia]="esComentarioPropio(comentario)">
+      <div class="tarjeta-cabecera">
+        <div class="tarjeta-usuario">
+          <div class="usuario-info">
+            <h5 class="usuario-nombre">{{ comentario.usuarios?.nombre }} {{ comentario.usuarios?.apellidos }}</h5>
+            <span *ngIf="esComentarioPropio(comentario)" class="etiqueta-propia">Tu comentario</span>
+          </div>
+          <div class="valoracion-estrellas">
+            <span *ngFor="let star of [1,2,3,4,5]">
+              {{ star <= comentario.valoracion ? '⭐' : '☆' }}
+            </span>
+          </div>
+        </div>
+        <div class="tarjeta-fecha">
+          {{ comentario.fecha_creacion }}
+          <span *ngIf="comentario.fecha_creacion !== comentario.fecha_actualizacion">
+            (editado {{ comentario.fecha_actualizacion }})
+          </span>
+        </div>
+      </div>
+      <p class="tarjeta-texto">{{ comentario.comentario }}</p>
+      <div *ngIf="esComentarioPropio(comentario)" class="tarjeta-acciones">
+        <button class="btn-accion btn-editar" (click)="editarComentario(comentario)" [disabled]="comentarioService.loading">
+          <i class="bi bi-pencil-fill"></i> Editar
+        </button>
+        <button class="btn-accion btn-eliminar" (click)="eliminarComentario(comentario.idCom)" [disabled]="comentarioService.loading">
+          <i class="bi bi-trash-fill"></i> Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
