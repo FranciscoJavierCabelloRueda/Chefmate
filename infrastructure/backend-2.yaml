@@ -87,7 +87,7 @@ Resources:
 
           # Clonar repositorio de ChefMate
           cd /home/ubuntu
-          git clone https://FranciscoCabelloRueda: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@github.com/FranciscoCabelloRueda/ChefMate.git chefmate
+          git clone https://@github.com/FranciscoCabelloRueda/Chefmate.git chefmate
           chown -R ubuntu:ubuntu /home/ubuntu/chefmate
 
           #=====================================================================#
